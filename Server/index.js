@@ -10,9 +10,9 @@ app.use(express.json());
 
 app.use("/", userRouter);
 
-app.get("/", (req, res) => {
-  res.json("Hello");
-});
+// app.get("/", (req, res) => {
+//   res.json("Hello");
+// });
 
 mongoose.connect("mongodb://127.0.0.1:27017/expense-tracker-app");
 

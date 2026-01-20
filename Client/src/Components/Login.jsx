@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Details from "./Details";
 
 const Login = () => {
@@ -7,6 +7,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -25,8 +27,12 @@ const Login = () => {
     });
 
     if (res.ok) {
+      const data = await res.json(); // ✅ get response
+      localStorage.setItem("userId", data.userId); // ✅ store userId
+
       setFormData({ email: "", password: "" });
       setSuccess("Login Successful");
+      navigate("/home");
     } else {
       setError("User Not Found or Password Incorrect");
     }

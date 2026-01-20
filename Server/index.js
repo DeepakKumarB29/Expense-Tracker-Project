@@ -10,11 +10,9 @@ app.use(express.json());
 
 app.use("/", userRouter);
 
-// app.get("/", (req, res) => {
-//   res.json("Hello");
-// });
-
-mongoose.connect("mongodb://127.0.0.1:27017/expense-tracker-app");
+mongoose
+  .connect("mongodb://127.0.0.1:27017/expense-tracker-app")
+  .then(() => console.log("MongoDB connected"));
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
